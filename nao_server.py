@@ -26,13 +26,15 @@ while True:
 
     try:
         final_data = b""
+        #Get all of the image data
         while True:
             img_data = conn.recv(4096)
             binary_array = bytes(img_data)
             final_data += binary_array
             if not img_data: 
                 break
-
+        
+        #Save reconstructed image
         img = Image.frombytes('RGB', (640, 480), bytes(pickle.loads(final_data)))
         img.save('image.png')    
         print("Got image")
@@ -42,6 +44,5 @@ while True:
         
     finally:
         conn.close()
-        continue
 
 s.close()
