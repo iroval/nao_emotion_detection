@@ -5,6 +5,7 @@ import io
 import os
 import pickle
 import tf_emotion
+import nao_voice_emotion_reco
 
 def server_func():
     binary_array = []
@@ -44,8 +45,13 @@ def server_func():
             detected_emotion = tf_emotion.emotion_reco()
             print("TF returned: " + detected_emotion)
 
+            #Get voice emotion
+            detected_voice_emotion = nao_voice_emotion_reco.voice_emotion()
+            print("Detected on voice: " + detected_voice_emotion)
+
             #Send data to NAO
             conn.send(bytes(detected_emotion, encoding='utf8'))
+            conn.send(bytes(detected_voice_emotion, encoding='utf-8'))
 
         except Exception as e:
             print(e)
