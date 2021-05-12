@@ -50,7 +50,9 @@ def voice_emotion():
     #livepredictions = (lb.inverse_transform((liveabc)))
     print(liveabc)
     final_emotion = str(liveabc)
-    return emotion_list[int(final_emotion[1:-1])]
+    final_emotion = emotion_list[int(final_emotion[1:-1])].split('_', 1)[-1]
+    print (final_emotion)
+    return final_emotion
 
 if __name__ == '__main__':
     voice_emotion()
