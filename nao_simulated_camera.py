@@ -1,3 +1,4 @@
+# @author: https://github.com/lfrenteriax
 import cv2
 from naoqi import ALProxy
 import vision_definitions
