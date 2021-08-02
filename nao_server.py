@@ -8,8 +8,7 @@ import tf_emotion
 
 binary_array = [] #Will store image data
 
-HOST = '192.168.50.245'
-#HOST = '127.0.0.1'  # Standard loopback interface address (localhost). Change with current address
+HOST = '127.0.0.1'  # Standard loopback interface address (localhost). Change with current address
 PORT = 6666        # Port to listen on (non-privileged ports are > 1023)
 
 #Create socket
@@ -25,7 +24,6 @@ print("Socket now listening")
 while True:
     #Establish connection with client
     conn, addr = s.accept()
-    #conn.settimeout(0.5) #Set timeout to trigger the exception in line 43 when data ends
     print('Got connection from', addr)
 
     try:
@@ -41,7 +39,6 @@ while True:
         while True:
             try:
                 img_data = conn.recv(4096)
-                #print(img_data)
             except:
                 break
             binary_array = bytes(img_data)
